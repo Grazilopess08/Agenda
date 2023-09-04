@@ -1,0 +1,51 @@
+<h1>⭒ Agendamento de Consultas ⭒</h1>
+<ul>
+    <% consultas.forEach(consulta=> { %>
+        <li>
+            <p>
+                <%= consulta.data_consulta %>
+            </p>
+            <p>
+                <%= consulta.nome_paciente %>
+            </p>
+            <p>
+                <%= consulta.status %>
+            </p>
+            <p>
+                <%= consulta.diagnostico %>
+            </p>
+            <p>
+                <%= consulta.prescricao_medicamentos %>
+            </p>
+            <a href="/consultas/<%= consulta.id %>/editar">Editar</a>
+           <form action="/consultas/<%= consulta.id %>/excluir" method="POST" style="display: inline;">
+                <button type="submit">Excluir</button>
+            </form>
+            <form action="/consultas/<%= consulta.id %>/atualizar-status" method="POST" style="display: inline;">
+                <select name="status">
+                    <option value="agendada" <%=consulta.status==='agendada' ? 'selected' : '' %>>Agendada</option>
+                    <option value="estendida" <%=consulta.status==='estendida' ? 'selected' : '' %>>Estendida</option>
+                    <option value="cancelada" <%=consulta.status==='cancelada' ? 'selected' : '' %>>Cancelada</option>
+                </select>
+                <button type="submit">Atualizar Status</button>
+            </form>
+        </li>
+        <% }); %> 
+</ul>
+
+
+<form action="/consultas" method="POST">
+    <input type="date" name="data_consulta" placeholder="Data da consulta" required>
+    <input type="text" name="nome_paciente" placeholder="Nome do paciente" required>
+    <input type="text" name="diagnostico" placeholder="Diagnóstico do Médico" required>
+    <input type="text" name="prescricao_medicamentos" placeholder="Prescrição do paciente" required>
+
+    <form action="/consultas/<%= consulta.id %>/atualizar-status" method="POST" style="display: inline;">
+        <select name="status">
+            <option value="agendada" <%=consulta.status==='agendada' ? 'selected' : '' %>>Agendada</option>
+            <option value="estendida" <%=consulta.status==='estendida' ? 'selected' : '' %>>Estendida</option>
+            <option value="cancelada" <%=consulta.status==='cancelada' ? 'selected' : '' %>>Cancelada</option>
+        </select>
+        <button type="submit">Agendar</button>
+    </form>
+</form>

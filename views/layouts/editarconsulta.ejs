@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar Consulta</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+    <h1>Editar Consulta</h1>
+    <form action="/consultas/<%= consulta.id %>/editar" method="POST">
+        <label for="dataConsulta">Nova data da Consulta:</label>
+        <input type="date" id="dataConsulta" name="dataConsulta" value="<%= consulta.data_consulta %>" required><br>
+        
+        
+        <label for="nomePaciente">Nome do paciente:</label>
+        <input type="text" id="nomePaciente" name="nomePaciente" value="<%= consulta.nome_paciente %>" required><br>
+
+        <label for="diagnostico">Diagnóstico:</label>
+        <textarea id="diagnostico" name="diagnostico" required><%= consulta.diagnostico %></textarea><br>
+
+        <label for="prescricaoMedicamentos">Prescrição Médica:</label>
+        <textarea id="prescricaoMedicamentos" name="prescricaoMedicamentos" required><%= consulta.prescricao_medicamentos %></textarea><br>
+
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+
+</html>
